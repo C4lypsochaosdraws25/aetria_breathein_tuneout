@@ -1,5 +1,5 @@
 # aetria_breathein_tuneout
-HI, I'M CALYPSO/APOCALYPSO/CAL, AND WELCOME TO AETRIA!!!!(yippee!!)
+HI, I'M CALYPSO/APOCALYPSO/CAL, AND WELCOME TO AETRIA!!!!(yippee!!): 
 Aetria is not just any student productivity app; it's the ultimate multitasking ninja that brings all your tasks, habits, focus, and progress together under one roof. No juggling, no context-switching, just you and your work having a blast.
 With Aetria, you can create tasks and projects while enjoying built-in progress tracking. Set deadlines and get notified ahead of time; you even get to choose how many days in advance. Plus, you can use custom tags to keep everything as neatly organized as a pantry stocked by Marie Kondo.
 
@@ -9,13 +9,13 @@ With Aetria's habit tracker, you can build and track daily habits that are fully
 
 Aetria offers personalization options that make it feel like it's yours. You can switch between themes, tweak the UI colors, add background noise to help you concentrate, and even bring in weather elements for a little ambient vibe. It's like having a personal assistant that knows just how you like things.
 
-WHY MUST I LISTEN TO YOU HUMAN?
+WHY MUST I LISTEN TO YOU HUMAN?: 
 Why Aetria, you ask? Well, because productivity tools shouldn't feel like another chore. Aetria is designed to be simple enough to actually use, and complete enough that you won't need anything else. It's like the cool kid in the productivity tools world; it's here to make things easier and more fun.
 
-GIVE ME FEEDBACK!!!
+GIVE ME FEEDBACK!!!: 
 Got a suggestion or ran into something? Aetria's all ears and would love to hear it. You can open an issue or reach out directly, and be assured that your feedback won't just disappear into the app void. 
 
-SUPPORT ME PLEASE!!
+SUPPORT ME PLEASE!!: 
 Aetria is and always will be free—no paywalls, no locked features. But, keeping it that way means I have to make a choice. I could slap ads everywhere and call it a day, but honestly? Ads are annoying, they clutter the experience, and they go against everything Aetria is supposed to be—a clean, focused space for you to actually get stuff done.
 So, instead of bombarding you with ads, I'm keeping Aetria ad-free and leaving it up to you. If Aetria has been your productivity wingman, helped you focus a little better, or just made you feel slightly more in control of your chaos, consider buying me a coffee. It helps me keep the lights on, keep improving the app, and most importantly, keep the ads out. No pressure at all. Even just using the app and sharing it with a friend means the world.
 
