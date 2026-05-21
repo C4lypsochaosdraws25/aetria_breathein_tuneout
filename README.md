@@ -10,7 +10,7 @@ With Aetria's habit tracker, you can build and track daily habits that are fully
 Aetria offers personalization options that make it feel like it's yours. You can switch between themes, tweak the UI colors, add background noise to help you concentrate, and even bring in weather elements for a little ambient vibe. It's like having a personal assistant that knows just how you like things.
 
 WHY MUST I LISTEN TO YOU HUMAN?: 
-Why Aetria, you ask? Well, because productivity tools shouldn't feel like another chore. Aetria is designed to be simple enough to actually use, and complete enough that you won't need anything else. It's like the cool kid in the productivity tools world; it's here to make things easier and more fun. (Trust me, I know, Im a student myself hehe..)
+Why Aetria, you ask? Well, because productivity tools shouldn't feel like another chore. Aetria is designed to be simple enough to actually use, and complete enough that you won't need anything else. It's like the cool kid in the productivity tools world; it's here to make things easier and more fun. (Trust me, I know, I'm a student myself hehe..)
 
 GIVE ME FEEDBACK!!!: 
 Got a suggestion or ran into something? Aetria's all ears and would love to hear it. You can open an issue or reach out directly, and be assured that your feedback won't just disappear into the app void. 
