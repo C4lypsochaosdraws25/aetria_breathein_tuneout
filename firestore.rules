@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 1. Global Safety Net - default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Auth & Identity helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // 2. Validation Blueprints (Anti-Update-Gap)
+    function isValidUserProfile(data) {
+      return data.userPoints is int 
+        && data.userPoints >= 0
+        && data.themeBackground is string && data.themeBackground.size() <= 128
+        && data.weatherEffect is string && data.weatherEffect.size() <= 128
+        && data.ambientSound is string && data.ambientSound.size() <= 128
+        && data.ambientVolume is int && data.ambientVolume >= 0 && data.ambientVolume <= 100
+        && data.tasks is list
+        && data.habits is list
+        && data.tags is list
+        && data.notes is list;
+    }
+
+    // 3. Fortress rules for Users Workspace State
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidUserProfile(incoming());
+      allow update: if isOwner(userId) && isValidUserProfile(incoming());
+      allow delete: if isOwner(userId);
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User specific application data and configurations.",
+      "type": "object",
+      "properties": {
+        "userPoints": { "type": "number", "description": "Productivity points reward score." },
+        "themeBackground": { "type": "string", "description": "Selected cozy theme background." },
+        "weatherEffect": { "type": "string", "description": "Active weather particles animation." },
+        "ambientSound": { "type": "string", "description": "Continuous synthesized binaural soundscape." },
+        "ambientVolume": { "type": "number", "description": "Synthesized ambient loop volume." },
+        "tasks": { "type": "array", "description": "List of all study and milestone tasks." },
+        "habits": { "type": "array", "description": "Healthy habits and completion records." },
+        "tags": { "type": "array", "description": "Customizable list of tag categorization lists." },
+        "notes": { "type": "array", "description": "Draggable sticky floating desk notes." },
+        "notifications": { "type": "array", "description": "Historic notification items." },
+        "pomodoroSettings": { "type": "object", "description": "Pomodoro interval presets configurations." },
+        "notificationPreferences": { "type": "object", "description": "Notification settings configs." },
+        "updatedAt": { "type": "string", "description": "Server authenticated timestamp of last sync save." }
+      },
+      "required": ["userPoints", "themeBackground", "weatherEffect", "ambientSound", "ambientVolume", "tasks", "habits", "tags", "notes"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "The user's complete sync state saved securely."
+    }
+  }
+}

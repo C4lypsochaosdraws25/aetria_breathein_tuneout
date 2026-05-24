@@ -1,0 +1,6 @@
+{
+  "name": "Aetria",
+  "description": "Breathe in, Tune out. A beautiful academic suite to manage tasks, track habits, focus with customized media, and earn rewards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
