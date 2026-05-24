@@ -24,6 +24,8 @@ Why Aetria, you ask? Well, because productivity tools shouldn't feel like anothe
 GIVE ME FEEDBACK!!!: 
 Got a suggestion or ran into something? Aetria's all ears and would love to hear it. You can open an issue or reach out directly, and be assured that your feedback won't just disappear into the app void. 
 
+*contact me: apocalypso.projects2512@gmail.com*
+
 SUPPORT ME PLEASE!! (i need the money {╥﹏╥} ) : 
 Aetria is and will always strive to be free- no paywalls, no locked features. But, keeping it that way means I have to make a choice. I could slap ads everywhere and call it a day, but honestly? Ads are annoying, they clutter the experience, and they go against everything Aetria is supposed to be: a clean, focused space for you to actually get stuff done.
 So, instead of bombarding you with ads, I'm keeping Aetria ad-free and leaving it up to you. If Aetria has been your productivity wingman, helped you focus a little better, or just made you feel slightly more in control of your chaos, consider buying me a coffee. It helps me keep the lights on, keep improving the app, and most importantly, keep the ads out. No pressure at all. Even just using the app and sharing it with a friend means the world.
