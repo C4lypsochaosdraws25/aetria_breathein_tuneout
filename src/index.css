@@ -1,0 +1,41 @@
+@import url('https://api.fontshare.com/v2/css?f[]=chubbo@400,500,700,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@450;750&family=Fredoka:wght@400;550;700&family=Quicksand:wght@400;600;700&family=Playpen+Sans:wght@400;600;800&family=DynaPuff:wght@500;700&family=Inter:wght@400;605;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap');
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Klemer';
+  src: url('https://db.onlinewebfonts.com/t/20e2a2cc15ea416a9a0846dfefd3a246.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Chubbo", "Fredoka", "Quicksand", "Inter", sans-serif;
+  --font-klemer: "Klemer", "Playfair Display", "Didot", "Georgia", serif;
+}
+
+@layer base {
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+  
+  /* Disable/hide scrollbars globally for cleaner look on mobile/tablet */
+  @media (max-width: 1023px) {
+    * {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    ::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+  }
+}
