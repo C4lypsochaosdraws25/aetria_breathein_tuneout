@@ -372,6 +372,17 @@ async function startServer() {
   loadData();
 
   const app = express();
+  import cors from "express";
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://aetria-breathein-tuneout.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, x-student-auth");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
