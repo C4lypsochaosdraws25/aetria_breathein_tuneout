@@ -15,6 +15,8 @@ Aetria offers personalization options that make it feel like it's yours. You can
 <img width="1896" height="805" alt="Screenshot 2026-05-24 122157" src="https://github.com/user-attachments/assets/d72c8045-1ec2-438f-a4c3-8d4b4ec13fab" />
 <img width="1893" height="805" alt="Screenshot 2026-05-24 122136" src="https://github.com/user-attachments/assets/58a640cd-36dd-4e5d-a32c-5c26234a8d3d" />
 
+*go ahead and try it out yourself: https://ai.studio/apps/80bcb499-70d0-4691-b488-e6625b51d649?fullscreenApplet=true*
+
 MEET THE DEVELOPER (me, hehe): 
 Hey there, I'm Calypso/Apocalypso/Cal, a young developer and student still figuring things out. Aetria is my first major project, but let's be real, it was born more out of frustration than a desire for a coding challenge. I mean, who has time to juggle a bunch of apps just to keep up with their own work? Not me, that's for sure! So, I thought, why not create one super app to rule them all? Genius, right? Experience-wise, I may not have a lifetime of it, but hey, I know what us students really need because, well, I am one. Aetria is my way of tackling a genuine problem for real people, and boy, am I learning a truckload in the process!
 
