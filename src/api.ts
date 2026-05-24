@@ -1,6 +1,6 @@
 import { AppData, Task, Habit, Tag, FloatingNote, PomodoroSettings, NotificationPreferences } from "./types";
 
-const API_BASE = "/api";
+const API_BASE = "https://aetria-breathein-tuneout.onrender.com/api";
 
 // Custom HTTP Client to inject user security headers
 export async function authFetch(url: string, options: RequestInit = {}): Promise<Response> {
