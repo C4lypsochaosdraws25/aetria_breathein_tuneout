@@ -2553,10 +2553,10 @@ export default function App() {
                   </h3>
                   <div className={`space-y-3 text-xs leading-relaxed ${isDark ? "text-slate-350" : "text-slate-650"}`}>
                     <p>
-                      Aetria is and always will be free- no paywalls, no locked features. But, keeping it that way means I have to make a choice. I could slap ads everywhere and call it a day, but honestly? Ads are annoying, they clutter the experience, and they go against everything Aetria is supposed to be: a clean, focused space for you to actually get stuff done.
+                      Aetria is and will always strive to be free- no paywalls, no locked features. But, keeping it that way means I have to make a choice. I could slap ads everywhere and call it a day or sell your data to bloodthirsty hounds who want your data like how some people are obssessed over oil (jk, don't come after me), but honestly? Ads are annoying, they clutter the experience and selling data is unsafe for you guys as users, and they go against everything Aetria is supposed to be: a clean, focused and safe space for you to actually get stuff done.
                     </p>
                     <p>
-                      So, instead of bombarding you with ads, I'm keeping Aetria ad-free and leaving it up to you. If Aetria has been your productivity wingman, helped you focus a little better, or just made you feel slightly more in control of your chaos, consider buying me a coffee. It helps me keep the lights on, keep improving the app, and most importantly, keep the ads out. No pressure at all. Even just using the app and sharing it with a friend means the world.
+                      So, instead of bombarding you with ads or tossing your data like a bone for a dog, I'm keeping Aetria ad-free and leaving it up to you. If Aetria has been your productivity wingman, helped you focus a little better, or just made you feel slightly more in control of your chaos, consider buying me a coffee. It helps me keep the lights on, keep improving the app, and most importantly, keep the ads and data selling out. No pressure at all. Even just using the app and sharing it with a friend means the world. (I will try to create a referral system, because my smooth brain is unable to figure out marketting because I'm just one person making this ദ്ദി( ༎ຶ‿༎ຶ ) )
                     </p>
                   </div>
                 </div>
@@ -2575,10 +2575,10 @@ export default function App() {
                       className="inline-flex items-center gap-2.5 text-white text-sm font-black px-8 py-4 rounded-2xl shadow-md hover:shadow-lg transition-all hover:scale-[1.03] active:scale-95 select-none cursor-pointer font-sans"
                     >
                       <Heart size={18} className="fill-white/30" />
-                      Support Aetria (beta) on Polar
+                      Support Aetria (beta) on Polar (COMING SOON!)
                     </a>
                     <p className="text-[10px] text-slate-400 font-mono mt-3 uppercase tracking-widest">
-                      Secure support via Polar.sh: Global payments supported
+                      Secure support via Polar.sh: Global payments supported (COMING SOON!)
                     </p>
                   </div>
                 </div>
