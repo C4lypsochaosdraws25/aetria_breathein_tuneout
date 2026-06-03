@@ -963,15 +963,27 @@ export default function App() {
 
   // Habits triggers
   const handleSaveHabit = async (habit: Habit) => {
-    try {
-      const res = await saveHabit(habit);
-      setData(res.state);
-      await awardPoints(15, `Started new discipline challenge habit "${habit.title}"`);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
+  try {
+    const res = await saveHabit(habit);
+    const newPoints = res.state.userPoints + 15;
+    const newNotif = {
+      id: `notif-points-${Date.now()}`,
+      message: `🎉 Earned +15 Productivity points! Reason: Started new discipline challenge habit "${habit.title}"`,
+      type: "system" as const,
+      timestamp: new Date().toISOString(),
+      read: false
+    };
+    const nextState = {
+      ...res.state,
+      userPoints: newPoints,
+      notifications: [newNotif, ...res.state.notifications]
+    };
+    await saveFullState(nextState);
+    setData(nextState);
+  } catch (err) {
+    console.error(err);
+  }
+};
   const handleToggleHabitDay = async (id: string, date: string) => {
     try {
       const targetHabit = data?.habits.find(h => h.id === id);
@@ -981,16 +993,21 @@ export default function App() {
       setData(res.state);
 
       if (isToggledDone) {
-        // Consistency streak award
-        await awardPoints(15, `Marked habit consistency "${targetHabit?.title}" done for ${date}!`);
-        
-        // Calculate streak to award bonus milestone points!
-        const cleanHistory = [...(targetHabit?.completionHistory || []), date];
-        const uniqueHistory = Array.from(new Set(cleanHistory));
-        if (uniqueHistory.length >= 3 && data && !data.unlockedBadges.includes("streak-master")) {
-          // Reward multiplier
-          await awardPoints(30, `Earned 3+ days habit streak bonus!`);
-        }
+  const newPoints = res.state.userPoints + 15;
+  const newNotif = {
+    id: `notif-points-${Date.now()}`,
+    message: `🎉 Earned +15 Productivity points! Reason: Marked habit consistency "${targetHabit?.title}" done for ${date}!`,
+    type: "system" as const,
+    timestamp: new Date().toISOString(),
+    read: false
+  };
+  const nextState = {
+    ...res.state,
+    userPoints: newPoints,
+    notifications: [newNotif, ...res.state.notifications]
+  };
+  await saveFullState(nextState);
+  setData(nextState);
       }
     } catch (err) {
       console.error(err);
