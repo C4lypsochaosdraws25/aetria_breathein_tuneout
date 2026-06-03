@@ -128,45 +128,90 @@ export default function FloatingNotesManager({
     onSaveNoteRef.current = onSaveNote;
   }, [onSaveNote]);
 
-  useEffect(() => {
-    if (!activeDragId) return;
+ useEffect(() => {
+  if (!activeDragId) return;
 
-    const handleGlobalPointerMove = (e: PointerEvent) => {
-      const currentNotes = notesRef.current;
-      const note = currentNotes.find((n) => n.id === activeDragId);
-      if (!note) return;
+  const handleMove = (clientX: number, clientY: number) => {
+    const note = notesRef.current.find((n) => n.id === activeDragId);
+    if (!note) return;
 
-      const rect = containerRef.current?.getBoundingClientRect();
-      const containerLeft = rect ? rect.left : 0;
-      const containerTop = rect ? rect.top : 0;
+    const rect = containerRef.current?.getBoundingClientRect();
+    const containerLeft = rect ? rect.left : 0;
+    const containerTop = rect ? rect.top : 0;
 
-      const newX = e.clientX - containerLeft - dragOffsetRef.current.x;
-      const newY = e.clientY - containerTop - dragOffsetRef.current.y;
+    const newX = clientX - containerLeft - dragOffsetRef.current.x;
+    const newY = clientY - containerTop - dragOffsetRef.current.y;
 
-      const containerWidth = containerRef.current?.clientWidth || window.innerWidth;
-      const boundedX = Math.max(0, Math.min(containerWidth - 100, newX));
-      const boundedY = Math.max(0, newY);
+    const containerWidth = containerRef.current?.clientWidth || window.innerWidth;
+    const boundedX = Math.max(0, Math.min(containerWidth - 100, newX));
+    const boundedY = Math.max(0, newY);
 
-      onSaveNoteRef.current({
-        ...note,
-        position: { x: boundedX, y: boundedY }
-      });
-    };
+    onSaveNoteRef.current({
+      ...note,
+      position: { x: boundedX, y: boundedY }
+    });
+  };
 
-    const handleGlobalPointerUp = () => {
-      setActiveDragId(null);
-    };
+  const handlePointerMove = (e: PointerEvent) => {
+    e.preventDefault();
+    handleMove(e.clientX, e.clientY);
+  };
 
-    window.addEventListener("pointermove", handleGlobalPointerMove, { passive: true });
-    window.addEventListener("pointerup", handleGlobalPointerUp);
-    window.addEventListener("pointercancel", handleGlobalPointerUp);
+  const handleTouchMove = (e: TouchEvent) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    handleMove(touch.clientX, touch.clientY);
+  };
 
-    return () => {
-      window.removeEventListener("pointermove", handleGlobalPointerMove);
-      window.removeEventListener("pointerup", handleGlobalPointerUp);
-      window.removeEventListener("pointercancel", handleGlobalPointerUp);
-    };
-  }, [activeDragId]);
+  const handleEnd = () => setActiveDragId(null);
+
+  window.addEventListener("pointermove", handlePointerMove, { passive: false });
+  window.addEventListener("pointerup", handleEnd);
+  window.addEventListener("pointercancel", handleEnd);
+  window.addEventListener("touchmove", handleTouchMove, { passive: false });
+  window.addEventListener("touchend", handleEnd);
+
+  return () => {
+    window.removeEventListener("pointermove", handlePointerMove);
+    window.removeEventListener("pointerup", handleEnd);
+    window.removeEventListener("pointercancel", handleEnd);
+    window.removeEventListener("touchmove", handleTouchMove);
+    window.removeEventListener("touchend", handleEnd);
+  };
+}, [activeDragId]);
+
+const startDrag = (e: React.PointerEvent | React.TouchEvent, note: FloatingNote) => {
+  const target = e.target as HTMLElement;
+  if (target.closest("input") || target.closest("button")) return;
+
+  let clientX: number;
+  let clientY: number;
+
+  if ("touches" in e) {
+    clientX = e.touches[0].clientX;
+    clientY = e.touches[0].clientY;
+  } else {
+    clientX = e.clientX;
+    clientY = e.clientY;
+    try {
+      (e.target as HTMLElement).setPointerCapture((e as React.PointerEvent).pointerId);
+    } catch (_) {}
+  }
+
+  const rect = containerRef.current?.getBoundingClientRect();
+  const containerLeft = rect ? rect.left : 0;
+  const containerTop = rect ? rect.top : 0;
+
+  dragOffsetRef.current = {
+    x: clientX - containerLeft - note.position.x,
+    y: clientY - containerTop - note.position.y
+  };
+
+  setActiveDragId(note.id);
+  e.preventDefault();
+};
+
+const stopDrag = () => setActiveDragId(null);
 
   const handleCreateNote = (isList: boolean) => {
     const ColorsArray = ["yellow", "blue", "green", "pink", "purple", "orange"];
@@ -190,38 +235,6 @@ export default function FloatingNotesManager({
       color: chosenColor
     };
     onSaveNote(newNote);
-  };
-
-  const startDrag = (e: React.PointerEvent, note: FloatingNote) => {
-    const target = e.target as HTMLElement;
-    if (target.closest(".note-header-drag-handle") && !target.closest("input") && !target.closest("button")) {
-      setActiveDragId(note.id);
-      
-      const rect = containerRef.current?.getBoundingClientRect();
-      const containerLeft = rect ? rect.left : 0;
-      const containerTop = rect ? rect.top : 0;
-
-      dragOffsetRef.current = {
-        x: e.clientX - containerLeft - note.position.x,
-        y: e.clientY - containerTop - note.position.y
-      };
-      
-      try {
-        target.setPointerCapture(e.pointerId);
-      } catch (_) {}
-      
-      e.preventDefault();
-    }
-  };
-
-  const stopDrag = (e: React.PointerEvent) => {
-    if (activeDragId) {
-      try {
-        const target = e.target as HTMLElement;
-        target.releasePointerCapture(e.pointerId);
-      } catch (_) {}
-      setActiveDragId(null);
-    }
   };
 
   const updateNoteTitle = (note: FloatingNote, newTitle: string) => {
@@ -332,13 +345,13 @@ export default function FloatingNotesManager({
               borderColor: activeDragId === note.id ? primaryColor : undefined
             }}
           >
-            {/* Header drag-zone */}
-            <div
+            {/* Header drag-zone */}<div
               onPointerDown={(e) => startDrag(e, note)}
-              onPointerUp={(e) => stopDrag(e)}
-              onPointerCancel={(e) => stopDrag(e)}
-              className={`note-header-drag-handle ${cTheme.headerBgClass} px-3 py-2.5 cursor-move flex items-center justify-between transition-colors touch-none select-none`}
+              onTouchStart={(e) => startDrag(e, note)}
+              onPointerUp={stopDrag}
+              className={`note-header-drag-handle ${cTheme.headerBgClass} px-3 py-2.5 cursor-grab active:cursor-grabbing flex items-center justify-between transition-colors touch-none select-none`}
             >
+              
               <div className="flex items-center gap-1.5 flex-1 min-w-0">
                 <GripHorizontal size={14} className={`${cTheme.dragIconClass} flex-shrink-0`} />
                 <input
