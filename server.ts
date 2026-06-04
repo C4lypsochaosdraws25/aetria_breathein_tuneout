@@ -189,7 +189,8 @@ async function getActiveState(req: express.Request): Promise<AppData> {
     const userState = await getUserState(uKey);
     if (userState) return userState;
   }
-  return getGuestState();
+  // Guest users get default initial data - localStorage handles persistence on client side
+  return { ...initialData };
 }
 
 async function saveActiveState(req: express.Request, state: AppData): Promise<void> {
@@ -199,7 +200,7 @@ async function saveActiveState(req: express.Request, state: AppData): Promise<vo
     await saveUserState(uKey, state);
     return;
   }
-  await saveGuestState(state);
+  // Guest users - don't save to Firestore, localStorage on client handles it
 }
 
 function syncTaskStatus(task: Task): Task {
