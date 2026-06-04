@@ -1,3 +1,14 @@
+import { 
+  signInWithPopup, 
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendEmailVerification,
+  signOut,
+  onAuthStateChanged
+} from "firebase/auth";
+import { auth, googleProvider } from "./firebase";
+
+
 import { AppData, Task, Habit, Tag, FloatingNote, PomodoroSettings, NotificationPreferences } from "./types";
 
 const API_BASE = "https://aetria-breathein-tuneout.onrender.com/api";
@@ -226,3 +237,25 @@ export async function triggerManualReminderCheck(simDateToTest: string): Promise
   if (!response.ok) throw new Error("Failed to run manual reminder sweep");
   return response.json();
 }
+
+export async function signInWithGoogle() {
+  const result = await signInWithPopup(auth, googleProvider);
+  return result.user;
+}
+
+export async function registerWithEmail(email: string, password: string) {
+  const result = await createUserWithEmailAndPassword(auth, email, password);
+  await sendEmailVerification(result.user);
+  return result.user;
+}
+
+export async function loginWithEmail(email: string, password: string) {
+  const result = await signInWithEmailAndPassword(auth, email, password);
+  return result.user;
+}
+
+export async function logoutUser() {
+  await signOut(auth);
+}
+
+export { onAuthStateChanged, auth };
